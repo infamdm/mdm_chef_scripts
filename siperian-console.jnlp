@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://localhost:8080/cmx">
+    <information>
+        <title>Informatica Hub Administration Console</title>
+        <vendor>Informatica LLC</vendor>
+        <homepage href="http://www.informatica.com"/>
+        <vendor>Informatica LLC</vendor>
+        <description>Informatica Hub Console @SIP.RELNAME@</description>
+        <description kind="short">Informatica Hub Console @SIP.RELNAME@</description>
+        <icon href="MDM32x32.gif"/>
+        <icon kind="splash" href="images/Splash_MDM.gif"/>
+        <offline-allowed/>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.6+" initial-heap-size="128m" max-heap-size="512m"/>
+
+        <!-- Siperian jars -->
+        <jar href="files/siperian-console.jar"/>
+        <jar href="files/siperian-console-hm.jar"/>
+        <jar href="files/siperian-console-am.jar"/>
+        <jar href="files/siperian-server.jar"/>
+        <jar href="files/siperian-server-hm.jar"/>
+        <jar href="files/siperian-server-am.jar"/>
+        <jar href="files/siperian-api.jar"/>
+        <jar href="files/siperian-sql.jar"/>
+        <jar href="files/siperian-common.jar"/>
+        <jar href="files/informatica-bpm-adapter.jar"/>
+        <jar href="files/informatica-locale-util.jar"/>
+        <jar href="files/mdm-ue.jar"/>
+        <jar href="files/mdm-spi.jar"/>
+        <jar href="files/cwm-generator.jar"/>
+
+        <!-- Third-party jars -->
+        <jar href="files/jakarta-regexp-1.4.jar"/>
+        <jar href="files/log4j-1.2.16.jar"/>
+        <jar href="files/commons-lang-2.5.jar"/>
+        <jar href="files/yfiles-2.7.jar"/>
+        <jar href="files/jlfgr-1_0.jar"/>
+        <jar href="files/axis-1.3.jar"/>
+        <jar href="files/commons-logging-1.0.4.jar"/>
+        <jar href="files/jaxrpc-1.3.jar"/>
+        <jar href="files/saaj-1.3.jar"/>
+        <jar href="files/commons-discovery-0.2.jar"/>
+        <jar href="files/commons-httpclient-2.0.2.jar"/>
+        <jar href="files/jdic-20060613.jar"/>
+        <jar href="files/jcommon-1.0.12.jar"/>
+        <jar href="files/jfreechart-1.0.8.jar"/>
+        <jar href="files/castor-1.1.1-xml.jar"/>
+        <jar href="files/commons-collections-3.2.2.jar"/>
+        <jar href="files/commons-validator-1.4.0.jar"/>
+        <jar href="files/h2-1.2.136.jar"/>
+        <jar href="files/jmi.jar"/>
+        <jar href="files/commonj.sdo-2.1.1.jar" />
+        <jar href="files/eclipselink-2.5.1.jar" />
+        <jar href="files/xercesImpl-2.9.1.jar" />
+	    <jar href="files/zookeeper-3.4.6.jar" />
+	    <jar href="files/slf4j-api-1.6.1.jar" />
+	    <jar href="files/json-20140107.jar" />
+	    <jar href="files/wsdl4j.jar" />
+	    <jar href="files/xalan.jar" />
+	    <jar href="files/bcprov-jdk15on-1.54.jar" />
+	    <jar href="files/guava-19.0.jar" />
+	    <jar href="files/commons-codec-1.10.jar" />
+        <!-- Appserver jars -->
+	    <jar href="files/jboss-client.jar"/>
+	    <jar href="files/jboss-client.jar"/>
+    </resources>
+    <resources os="Windows">
+        <jar href="files/windows/jdic_stub.jar"/>
+        <nativelib href="files/windows/jdic-native.jar"/>
+    </resources>
+    <application-desc main-class="com.delos.cmx.console.CMXAdminConsole">
+        <argument>cmxServerMode=EJB</argument>
+        <argument>cmxServerProtocol=remote</argument>
+        <argument>cmxServerName=USW1R90JW8XY.informatica.com</argument>
+        <argument>cmxServerPort=4447</argument>
+        <argument>cmxServerWebContext=/cmx</argument>
+        <argument>cmxServerType=jboss</argument>
+        <argument>cmxWebServerPort=8080</argument>
+        <argument>cmxRequestHostname=localhost</argument>
+        <argument>cmxServerLocale=en-US</argument>
+        <argument>cmxCustomProperties:${CUSTOM_PROPS}</argument>
+    </application-desc>
+</jnlp>
