@@ -1,3 +1,0 @@
-@echo off
-echo tail started ....
-tail -f c:\infamdm\hub\server\logs\cmxserver.log
