@@ -1,5 +1,5 @@
 @echo off
-setF_URL=https://network.informatica.com/downloadsView.jspa
+set HF_URL=https://network.informatica.com/downloadsView.jspa
 set EBF_URL=ftp://tsftp:infa123@tsftpint.informatica.com/updates/MDM/hotfixes/Oracle_DB2_SQLServer/
 set MDM_SERVER_HOME=c:\infamdm\hub\server
 set MDM_CLEANSE_HOME=C:\infamdm\hub\cleanse
@@ -12,6 +12,7 @@ cls
 set /a _rand=(%RANDOM%*5/32768)+1
 set color_rand=%_rand%F
 color %color_rand%
+                                                 
 
 echo		 	./+ooooos+/-
 echo              -syyhhyyhdhdhhdh+.
@@ -84,7 +85,7 @@ echo # LAUNCHING HUB CONSOLE...
 echo cleaning java cache files... 
 javaws -uninstall
 echo Starting Hub Console...
-javaws C:\SREDDY\scripts\siperian-console.jnlp
+start javaws C:\SREDDY\scripts\siperian-console.jnlp
 
 goto menu
 
@@ -209,13 +210,12 @@ md %MDM_CLEANSE_HOME%\logs
 echo  cleanse tmp
 md %MDM_CLEANSE_HOME%\tmp
 
-echo server temp
+echo  server temp
 md %MDM_SERVER_HOME%\temp
 
 echo will start Jboss server in new window....
 timeout 3 > NUL
 
-cls
 start "JBOSS MDM Server" /HIGH %JBOSS_HOME%\bin\standalone.bat --debug 9797 -c standalone-full.xml -b 0.0.0.0
 
 goto menu
