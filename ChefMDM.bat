@@ -52,14 +52,20 @@ echo    I) download EBF
 echo    J) download Hotfix
 echo    K) Start JBoss
 echo    L) Start Hub Console
+echo    M) tail MDM server logs
+echo    N) tail MDM Cleanse logs
+echo    O) Check server deployment status
 
 echo.
 echo    Z) Exit
 echo.
 rem choice /C:ABCDEFGHIJKLZ
-choice /C:ABCDEFGHIJKLZ /N /M "Option : "
+choice /C:ABCDEFGHIJKLMNOZ /N /M "Option : "
 
-if errorlevel 13 goto done
+if errorlevel 16 goto done
+if errorlevel 15 goto checkServerDeploymentStatus
+if errorlevel 14 goto tailCleanseLogs
+if errorlevel 13 goto tailServerLogs
 if errorlevel 12 goto startHubConsole
 if errorlevel 11 goto startJboss
 if errorlevel 10 goto download_HF
@@ -79,13 +85,34 @@ goto done
 echo GOOD BYE !!!
 exit /b
 
+:checkServerDeploymentStatus
+:start
+echo # JBOSS DEPLOYMENT STATUS
+echo.
+cd %JBOSS_HOME%\standalone\deployments\
+ls *deploy*
+timeout 2 > nul
+cls
+goto start
+
+
+:tailCleanseLogs
+echo # LAUNCHING CLEANSE LOGS IN SEPARATE WINDOW
+start tail -f  %MDM_CLEANSE_HOME%\logs\cmxserver.log
+goto menu
+
+:tailServerLogs
+echo # LAUNCHING MDM SERVER LOGS IN SEPARATE WINDOW
+start tail -f  %MDM_SERVER_HOME%\logs\cmxserver.log
+goto menu
+
 :startHubConsole
 echo.
 echo # LAUNCHING HUB CONSOLE...
 echo cleaning java cache files... 
 javaws -uninstall
 echo Starting Hub Console...
-start javaws C:\SREDDY\scripts\siperian-console.jnlp
+start javaws http://localhost:8080/cmx/siperian-console.jnlp
 
 goto menu
 
@@ -217,5 +244,8 @@ echo will start Jboss server in new window....
 timeout 3 > NUL
 
 start "JBOSS MDM Server" /HIGH %JBOSS_HOME%\bin\standalone.bat --debug 9797 -c standalone-full.xml -b 0.0.0.0
+
+REM GO TO DEPLOYMENT STATUS WINDOW
+rem goto checkServerDeploymentStatus
 
 goto menu
